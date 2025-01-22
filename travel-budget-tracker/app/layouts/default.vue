@@ -1,8 +1,10 @@
 <template>
-  <div class="container mx-auto max-w-xl h-full">
-    <header>header</header>
-    <main class="h-full pt-4 flex-1">
-      <slot />
+  <div class="relative container mx-auto max-w-xl h-full bg-white dark:bg-gray-900">
+    <AppHeader />
+    <main class="h-full px-4 pt-14 pb-6 bg-white dark:bg-gray-900">
+      <div class="h-[calc(100%-1rem)] mt-4 overflow-y-auto">
+        <slot />
+      </div>
     </main>
   </div>
 </template>
@@ -11,14 +13,14 @@
 useHead({
   link: [
     {
-      rel: "preconnect",
-      href: "https://fonts.googleapis.com",
+      rel: 'preconnect',
+      href: 'https://fastly.jsdelivr.net',
+      crossorigin: 'anonymous'
     },
     {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Inter&display=swap",
-      crossorigin: "",
-    },
+      rel: 'stylesheet',
+      href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'
+    }
   ],
   htmlAttrs: {
     class: 'h-full',
@@ -26,11 +28,25 @@ useHead({
   bodyAttrs: {
     class: 'h-full',
   },
-})
+});
 </script>
 
 <style>
+body {
+  font-family: 'Pretendard';
+  @apply bg-slate-400 dark:bg-black;
+}
 #__nuxt {
   @apply h-full;
+}
+
+::-webkit-scrollbar {
+  @apply w-[0.325rem];
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 dark:bg-gray-800 rounded;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
 }
 </style>
