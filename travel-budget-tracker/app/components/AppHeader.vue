@@ -1,5 +1,5 @@
 <template>
-  <header class="h-14 absolute w-full inset-0 px-4 py-3 z-[1000] text-center bg-white dark:bg-gray-900 shadow-[0_0.3125rem_0.625rem_-0.3rem] shadow-gray-200 dark:shadow-gray-600">
+  <header class="sticky inset-0 w-full h-16 px-4 py-4 z-[1000] text-center bg-white dark:bg-gray-900 shadow-[0_0.3125rem_0.625rem_-0.3rem] shadow-gray-200 dark:shadow-gray-600">
     <h1 class="h-full inline-block"><NuxtLink to="/"><img src="../assets/images/logo.png" alt="" class="h-full"></NuxtLink></h1>
     <div class="flex items-center absolute top-1/2 right-4 -translate-y-1/2">
       <span class="text-gray-700 dark:text-gray-300">{{ currentMode }}</span>

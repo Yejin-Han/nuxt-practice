@@ -1,11 +1,12 @@
 <template>
   <div class="relative container mx-auto max-w-xl h-full bg-white dark:bg-gray-900">
     <AppHeader />
-    <main class="h-full px-4 pt-14 pb-6 bg-white dark:bg-gray-900">
-      <div class="h-[calc(100%-1rem)] mt-4 overflow-y-auto">
+    <main class="h-[calc(100%-7.75rem)] px-4 py-6 bg-white dark:bg-gray-900">
+      <div class="h-full overflow-y-auto">
         <slot />
       </div>
     </main>
+    <TabBar />
   </div>
 </template>
 
@@ -28,7 +29,7 @@ useHead({
   bodyAttrs: {
     class: 'h-full',
   },
-});
+})
 </script>
 
 <style>
