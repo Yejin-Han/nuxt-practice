@@ -2,7 +2,7 @@
   <nav class="sticky bottom-0 left-0 w-full h-14 border-t border-gray-200 dark:border-gray-800">
     <ul class="flex h-full">
       <li v-for="(tab, idx) in tabs" :key="idx" class="flex-1">
-        <NuxtLink :to="tab.route" v-if="!tab.dropdown" class="block w-full h-full flex justify-center items-center">
+        <NuxtLink :to="tab.route" v-if="!tab.dropdown" class="block w-full h-full flex justify-center items-center" :class="{ 'text-blue-500 dark:text-blue-400': isActive(tab.route) }">
           <!-- <img :src="`${images[tab.icon]}`" alt="" class="block w-6 h-6"> // 이미지 사용 시 -->
           <UIcon :name="tab.icon" class="block w-6 h-6" />
         </NuxtLink>
@@ -13,9 +13,7 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/useAuthStore'
-
-const auth = useAuthStore()
+const route = useRoute()
 
 const tabs = [
   { icon: "i-heroicons-home", route: "/" },
@@ -36,4 +34,6 @@ const tabs = [
 //   { icon: "ico-chart", route: "/analysis" },
 //   { icon: "ico-settings", route: "/settings"}
 // ]
+
+const isActive = path => route.path === path
 </script>
