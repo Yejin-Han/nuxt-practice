@@ -2,7 +2,7 @@
   <div class="relative container mx-auto max-w-xl h-full bg-white dark:bg-gray-900">
     <AppHeader />
     <main class="h-[calc(100%-7.75rem)] px-4 py-6 bg-white dark:bg-gray-900">
-      <div class="h-full overflow-y-auto">
+      <div class="h-full overflow-x-hidden overflow-y-auto">
         <slot />
       </div>
     </main>
@@ -36,7 +36,7 @@ useHead({
 <style>
 body {
   font-family: 'Pretendard';
-  @apply bg-slate-400 dark:bg-black;
+  @apply bg-slate-400 dark:bg-black selection:bg-sky-200 dark:selection:bg-sky-700;
 }
 #__nuxt {
   @apply h-full;
