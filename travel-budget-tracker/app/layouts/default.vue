@@ -12,6 +12,7 @@
 
 <script setup>
 useHead({
+  title: '여행가계부',
   link: [
     {
       rel: 'preconnect',
