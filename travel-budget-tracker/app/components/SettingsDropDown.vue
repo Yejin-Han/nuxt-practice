@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!auth.user" class="w-full h-full flex justify-center items-center">
-    <UIcon name="i-heroicons-cog-8-tooth" class="block w-6 h-6" />
+  <div v-if="isGuest" class="w-full h-full flex justify-center items-center">
+    <NuxtLink to="/login"><UIcon name="i-heroicons-cog-8-tooth" class="block w-6 h-6" /></NuxtLink>
   </div>
   <UDropdown v-else :items="items" :popper="{ placement: 'bottom-end' }" :ui="{ item: { disabled: 'opacity-50' }, width: 'w-48' }" class="flex justify-center items-center">
     <UAvatar :src="avatarUrl" alt="Profile Image" size="xs" class="mx-auto ring-2 ring-gray-600 dark:ring-gray-300" />
@@ -24,27 +24,31 @@
 import { useAuthStore } from '@/stores/useAuthStore'
 
 const auth = useAuthStore()
+const isGuest = ref(true)
 
-const avatarUrl = auth.user?.user_metadata.avatar_url;
+onMounted(() => { if(auth.user) isGuest.value = false })
 
-const items = [
+const avatarUrl = computed(() => auth.user?.user_metadata.avatar_url || '');
+
+const items = computed(() => [
   [{
-    label: auth.user?.user_metadata.name,
+    label: auth.user?.user_metadata.name || '사용자',
     slot: 'account',
     disabled: true,
   }],
   [{
-      label: '설정',
-      icon: 'i-heroicons-cog-8-tooth',
-      click: () => navigateTo('/settings/profile')
+    label: '설정',
+    icon: 'i-heroicons-cog-8-tooth',
+    click: () => navigateTo('/settings/profile')
   }],
   [{
-      label: '로그아웃',
-      icon: 'i-heroicons-arrow-left-on-rectangle',
-      click: async () => {
-        await useSupabaseClient().auth.signOut()
-        return navigateTo('/login')
-      }
+    label: '로그아웃',
+    icon: 'i-heroicons-arrow-left-on-rectangle',
+    click: async () => {
+      await useSupabaseClient().auth.signOut()
+      isGuest.value = true
+      return navigateTo('/login')
+    }
   }]
-]
+])
 </script>
