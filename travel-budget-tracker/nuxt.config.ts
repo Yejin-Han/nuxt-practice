@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
     public: {
-      baseUrl: process.env.BASE_URL ?? "http://localhost:3000",
+      baseUrl: process.env.BASE_URL ? process.env.BASE_URL : "http://localhost:3000",
     },
   }
 })
