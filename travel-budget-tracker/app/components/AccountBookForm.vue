@@ -10,8 +10,8 @@
       <p v-else-if="errorsMap.end_date" class="mt-2 text-red-500 dark:text-red-400 text-sm">{{ errorsMap.end_date }}</p>
     </UFormGroup>
     <UFormGroup label="여행 국가" :required="true" class="mb-8">
-      <USelectMenu v-model="state.country" :options="countries" value-attribute="value" option-attribute="label" />
-    </UFormGroup>
+      <USelectMenu v-model="state.country" :options="countries" value-attribute="value" option-attribute="label" :ui="{ strategy: 'override' }" :popper="{ placement: 'bottom-start', offsetSkid: -7.5, adaptive: false }" />
+    </UFormGroup> 
     <UFormGroup label="인원" :required="true" class="mb-8">
       <div class="flex justify-around items-center">
         <UButton @click="decreasePeople" icon="i-heroicons-minus-circle" color="white" variant="ghost" size="lg" />
@@ -130,7 +130,7 @@ const schema = z.object({
     return
   }
 
-  if (data.group_budget === null && !data.isGroupBudgetUndefined) {
+  if (data.people > 1 && data.group_budget === null && !data.isGroupBudgetUndefined) {
     ctx.addIssue({
       message: '공금 예산이 입력되지 않았습니다.',
       path: ['group_budget']
@@ -194,6 +194,7 @@ input[type='number'] {
   -moz-appearance: textfield;
   appearance: none;
 }
-/* 너무 열받지만 overflow-x-hidden 안걸어놓으면 가로스크롤생기고, translateX도 애매하게 생겨서 너ㅓㅓㅓ무 열받아요 아직 못고쳐서 그냥 input type number쓰기를 포기함 ㅋㅋ.. */
-</style>
+/* 너무 열받지만 overflow-x-hidden 안걸어놓으면 가로스크롤생기고, translateX도 애매하게 생겨서 너ㅓㅓㅓ무 열받아요 아직 못고쳐서 (input number이 아니었구나) selectMenu 열렸을 때 div 위치가 말이에요~~ 수정을 잘 해봐야겠어요 ^^
 
+.... 0205 기준 2시간을 쏟아부어도 모르겠다. */
+</style>
